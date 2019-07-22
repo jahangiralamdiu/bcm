@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchasesTable extends Migration
+class CreateExpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,23 @@ class CreatePurchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id');
             $table->integer('quantity');
             $table->string('unit', '50');
             $table->double('amount');
-            $table->date('purchased_date');
+            $table->date('expense_date');
             $table->enum('source_of_money', ['FUND', 'INDIVIDUAL']);
-            $table->integer('purchased_by')->nullable()->unsigned();
+            $table->integer('expended_by')->nullable()->unsigned();
+            $table->string('details')->nullable();
             $table->string('status', 30);
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::table('purchases', function (Blueprint $table) {
-            $table->foreign('purchased_by')
+        Schema::table('expenses', function (Blueprint $table) {
+            $table->foreign('expended_by')
                 ->references('id')->on('users');
         });
     }
@@ -40,6 +41,6 @@ class CreatePurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('expenses');
     }
 }

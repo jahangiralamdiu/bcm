@@ -19,6 +19,7 @@ class CreateDepositsTable extends Migration
             $table->double('amount');
             $table->date('deposit_date');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('deposits', function (Blueprint $table) {
