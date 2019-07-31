@@ -12,6 +12,6 @@ class Deposit extends Model
 
     public function depositor()
     {
-        return $this->hasOne(User::class, 'id', 'depositor_id');
+        return $this->belongsTo(User::class, 'depositor_id', 'id');
     }
 }

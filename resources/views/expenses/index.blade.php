@@ -12,22 +12,23 @@
                         <table id="expense" class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>Expense By</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
                                 <th>Date</th>
                                 <th>Amount</th>
+                                <th>Source of Money</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($expenses as $expense)
                             <tr>
-                                <td>Md. Jahangir Alam</td>
-                                <td>10 June 2018</td>
-                                <td>BDT 5000.00</td>
+                                <td>{{$expense->product->name}}</td>
+                                <td>{{$expense->quantity}}</td>
+                                <td>{{$expense->expense_date}}</td>
+                                <td>{{$expense->amount}}</td>
+                                <td>{{$expense->source_of_money}}</td>
                             </tr>
-                            <tr>
-                                <td>Md. Masud Rana</td>
-                                <td>12 June 2018</td>
-                                <td>BDT 3000.00</td>
-                            </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

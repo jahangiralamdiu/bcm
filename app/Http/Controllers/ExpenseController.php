@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Expense;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        return view('expenses.index');
+        $expenses = Expense::all();
+        return view('expenses.index', compact('expenses'));
     }
 
     /**
@@ -38,7 +40,10 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =$request->all();
+        $data['status'] = 'PENDING';
+        Expense::create($data);
+        return redirect('/expenses');
     }
 
     /**

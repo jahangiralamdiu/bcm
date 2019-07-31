@@ -85,7 +85,7 @@
                                     <select id="source_of_money" name="source_of_money" class="form-control{{ $errors->has('source_of_money') ? ' is-invalid' : '' }}" required>
                                         <option>Select Source</option>
 
-                                            <option value="INVESTMENT">Investment</option>
+                                            <option value="FUND">Fund</option>
                                             <option value="INDIVIDUAL">Individual</option>
                                     </select>
                                     @if ($errors->has('source_of_money'))
@@ -99,8 +99,8 @@
                                 <label for="expended_by" class="col-md-4 col-form-label text-md-right">{{ __('Expended By') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="expended_by" name="expended_by" class="form-control{{ $errors->has('expended_by') ? ' is-invalid' : '' }}" required>
-                                        <option>Select Person</option>
+                                    <select id="expended_by" name="expended_by" class="form-control{{ $errors->has('expended_by') ? ' is-invalid' : '' }}">
+                                        <option value="">Select Person</option>
                                         @foreach($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                         @endforeach

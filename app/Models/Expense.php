@@ -13,12 +13,12 @@ class Expense extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function expendedBy()
     {
-        return $this->hasOne(User::class, 'id', 'expended_by');
+        return $this->belongsTo(User::class, 'expended_by', 'id');
     }
 
 }
