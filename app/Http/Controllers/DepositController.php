@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposit;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DepositController extends Controller
@@ -13,7 +15,8 @@ class DepositController extends Controller
      */
     public function index()
     {
-        return view('deposits.index');
+        $deposits = Deposit::all();
+        return view('deposits.index', compact('deposits'));
     }
 
     /**
@@ -23,7 +26,8 @@ class DepositController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('deposits.create', compact('users'));
     }
 
     /**
@@ -34,7 +38,9 @@ class DepositController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Deposit::create($data);
+        return redirect('/deposits');
     }
 
     /**

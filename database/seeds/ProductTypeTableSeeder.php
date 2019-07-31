@@ -11,10 +11,10 @@ class ProductTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('product_types')->insert([
+        DB::table('product_types')->insert([[
             'name' => 'Service'
         ], [
             'name' => 'Goods'
-        ]);
+        ]]);
     }
 }

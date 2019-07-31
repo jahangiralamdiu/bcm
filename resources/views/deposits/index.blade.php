@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <a href="{{route('deposits.create')}}" role="button" class="btn btn-link">Create</a>
                 <div class="card">
                     <div class="card-header">Deposits</div>
 
@@ -14,19 +15,18 @@
                                 <th>Deposited By</th>
                                 <th>Date</th>
                                 <th>Amount</th>
+                                <th>Remarks</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Md. Jahangir Alam</td>
-                                <td>10 June 2018</td>
-                                <td>BDT 5000.00</td>
-                            </tr>
-                            <tr>
-                                <td>Md. Masud Rana</td>
-                                <td>12 June 2018</td>
-                                <td>BDT 3000.00</td>
-                            </tr>
+                            @foreach($deposits as $deposit)
+                                <tr>
+                                    <td>{{$deposit->depositor->name}}</td>
+                                    <td>{{$deposit->amount}}</td>
+                                    <td>{{$deposit->deposit_date}}</td>
+                                    <td>{{$deposit->remarks}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

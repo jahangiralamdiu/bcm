@@ -15,7 +15,7 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->integer('quantity');
             $table->string('unit', '50');
             $table->double('amount');
@@ -31,6 +31,11 @@ class CreateExpensesTable extends Migration
         Schema::table('expenses', function (Blueprint $table) {
             $table->foreign('expended_by')
                 ->references('id')->on('users');
+        });
+
+        Schema::table('expenses', function (Blueprint $table) {
+            $table->foreign('product_id')
+                ->references('id')->on('products');
         });
     }
 

@@ -18,6 +18,7 @@ class CreateDepositsTable extends Migration
             $table->integer('depositor_id')->unsigned();
             $table->double('amount');
             $table->date('deposit_date');
+            $table->string('remarks')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

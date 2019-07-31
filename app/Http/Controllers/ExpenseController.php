@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -23,7 +25,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $products = Product::all();
+        return view('expenses.create', compact('users', 'products'));
     }
 
     /**
