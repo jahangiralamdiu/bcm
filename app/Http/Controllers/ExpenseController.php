@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\constants\ExpenseStatus;
 use App\Models\Expense;
 use App\Models\Product;
 use App\Models\User;
@@ -41,7 +42,7 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $data =$request->all();
-        $data['status'] = 'PENDING';
+        $data['status'] = ExpenseStatus::PENDING;
         Expense::create($data);
         return redirect('/expenses');
     }

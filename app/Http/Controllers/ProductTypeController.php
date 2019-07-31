@@ -14,7 +14,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        //
+        $productTypes = ProductType::all();
+        return view('product-types.index', compact('productTypes'));
     }
 
     /**

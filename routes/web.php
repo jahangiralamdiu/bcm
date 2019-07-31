@@ -21,5 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resources([
     'expenses' => 'ExpenseController',
-    'deposits' => 'DepositController'
+    'deposits' => 'DepositController',
+    'products' => 'ProductController',
+    'product-types' => 'ProductTypeController',
+    'users' => 'Auth\UserController',
 ]);

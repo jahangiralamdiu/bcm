@@ -48,11 +48,11 @@
                                 Settings
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Products</a>
-                                <a class="dropdown-item" href="#">Product Types</a>
+                                <a class="dropdown-item" href="{{url('/products')}}">Products</a>
+                                <a class="dropdown-item" href="{{url('/product-types')}}">Product Types</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Roles</a>
-                                <a class="dropdown-item" href="#">Users</a>
+                                <a class="dropdown-item" href="{{url('/roles')}}">Roles</a>
+                                <a class="dropdown-item" href="{{url('/users')}}">Users</a>
                             </div>
                         </li>
                     </ul>
