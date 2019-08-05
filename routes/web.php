@@ -19,10 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resources([
-    'expenses' => 'ExpenseController',
-    'deposits' => 'DepositController',
-    'products' => 'ProductController',
-    'product-types' => 'ProductTypeController',
-    'users' => 'Auth\UserController',
-]);
+Route::middleware(['auth'])->group(function () {
+    Route::resources([
+        'expenses' => 'ExpenseController',
+        'deposits' => 'DepositController',
+        'products' => 'ProductController',
+        'product-types' => 'ProductTypeController',
+        'users' => 'Auth\UserController',
+    ]);
+});

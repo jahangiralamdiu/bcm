@@ -40,11 +40,18 @@
                                         <strong>{{ $errors->first('quantity') }}</strong>
                                     </span>
                                     @endif
-                                    <label for="unit">Unit</label>
-                                    <select id="unit" name="unit">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="unit" class="col-md-4 col-form-label text-md-right">{{ __('Unit') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="unit" class="form-control" name="unit">
                                         <option value="na">N/A</option>
                                         <option value="kg">KG</option>
                                         <option value="ton">TON</option>
+                                        <option value="piece">Piece</option>
                                     </select>
                                 </div>
                             </div>
