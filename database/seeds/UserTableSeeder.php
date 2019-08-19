@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
             'mobile' => '01700111111',
             'email' => 'admin@bcm.com',
             'password' => '$2y$10$dtG9GCG.kjdBETxlM/0cdun6qhKM69Bo5twH6nyCAxMfnM0wyFnw.',
+            'address' => 'Dhaka'
         ]);
     }
 }
