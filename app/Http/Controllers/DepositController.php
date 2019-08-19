@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Deposit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DepositController extends Controller
 {
@@ -86,5 +87,15 @@ class DepositController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function depositByUser()
+    {
+        $deposits = DB::table('deposits')
+            ->join('users', 'deposits.depositor_id', '=', 'users.id')
+            ->select('deposits.depositor_id', 'users.name', 'users.mobile', DB::raw('SUM(deposits.amount) as total_sales'))
+            ->groupBy('depositor_id')
+            ->get();
+        dd($deposits);
     }
 }

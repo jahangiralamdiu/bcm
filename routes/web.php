@@ -27,4 +27,7 @@ Route::middleware(['auth'])->group(function () {
         'product-types' => 'ProductTypeController',
         'users' => 'Auth\UserController',
     ]);
+
+    Route::get('/deposits-sum', 'DepositController@depositByUser');
+    Route::get('/expense-status/{id}/{status}', 'ExpenseController@updateStatus');
 });
