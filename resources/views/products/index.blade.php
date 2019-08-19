@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <a href="{{route('products.create')}}" role="button" class="btn btn-link">Create</a>
+            <div class="col-md-12">
+                <a href="{{route('products.create')}}" role="button" class="btn btn-success mb-1"><i class="fas fa-plus"></i> Add New Product</a>
                 <div class="card">
                     <div class="card-header">Products</div>
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{route('expenses.create')}}" role="button" class="btn btn-link">Create</a>
+        <a href="{{route('expenses.create')}}" role="button" class="btn btn-success mb-1"><i class="fas fa-plus"></i> Add New Expense</a>
         <div class="row justify-content-center mb-4">
             <div class="col-md-12">
                 <div class="card">

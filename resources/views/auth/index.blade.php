@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <a href="{{route('register')}}" role="button" class="btn btn-link">Create</a>
+            <div class="col-md-12">
+                <a href="{{route('register')}}" class="btn btn-success mb-1"><i class="fas fa-plus"></i> Add New
+                    User</a>
                 <div class="card">
                     <div class="card-header">Users</div>
 
@@ -16,6 +17,7 @@
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Address</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,6 +27,11 @@
                                     <td>{{$user->mobile}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->address}}</td>
+                                    <td>
+                                        <a href="#" role="button" class="btn btn-secondary"><i class="far fa-edit"></i>Edit</a>
+                                        <a href="#" role="button" class="btn btn-danger"><i
+                                                    class="fas fa-trash-alt"></i> Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -37,8 +44,8 @@
 @endsection
 @push('page-js')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#deposit').DataTable();
-        } );
+        });
     </script>
 @endpush

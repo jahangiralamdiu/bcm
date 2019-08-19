@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <a href="{{route('deposits.create')}}" role="button" class="btn btn-link">Create</a>
+            <div class="col-md-12">
+                <a href="{{route('deposits.create')}}" role="button" class="btn btn-success mb-1"><i class="fas fa-plus"></i> Add New Deposit</a>
                 <div class="card">
                     <div class="card-header">Deposits</div>
 
@@ -16,6 +16,7 @@
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Remarks</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,6 +26,10 @@
                                     <td>{{$deposit->amount}}</td>
                                     <td>{{$deposit->deposit_date}}</td>
                                     <td>{{$deposit->remarks}}</td>
+                                    <td>
+                                        <a href="#" role="button" class="btn btn-secondary"><i class="far fa-edit"></i> Edit</a>
+                                        <a href="#" role="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
