@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-md navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    <img src="bcm-logo.png" height="50" width="70"/>
+                    <img src="{{url('/bcm-logo.png')}}" height="50" width="70"/>
                     {{ config('app.name', 'BCM') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
