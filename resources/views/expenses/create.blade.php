@@ -46,11 +46,26 @@
                                     <div class="form-group">
                                         <label for="unit">{{ __('Unit') }}</label>
                                         <select id="unit" class="form-control" name="unit">
-                                            <option value="na">N/A</option>
-                                            <option value="kg">KG</option>
-                                            <option value="ton">TON</option>
-                                            <option value="piece">Piece</option>
+                                            <option value="N/A">N/A</option>
+                                            <option value="KG">KG</option>
+                                            <option value="Ton">TON</option>
+                                            <option value="Piece">Piece</option>
+                                            <option value="Meter">Meter</option>
+                                            <option value="Feet">Feet</option>
                                         </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="unit_price">{{ __('Unit Price') }}</label>
+                                        <input id="unit_price" type="number"
+                                               class="form-control{{ $errors->has('unit_price') ? ' is-invalid' : '' }}"
+                                               name="unit_price" value="{{ old('unit_price') }}" required>
+
+                                        @if ($errors->has('unit_price'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('unit_price') }}</strong>
+                                    </span>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
@@ -143,18 +158,25 @@
 @push('page-js')
     <script>
         $(document).ready(function () {
-           let manageExpendedBy = function () {
-             const source = $('#source_of_money').val();
-             if (source == 'INDIVIDUAL') {
-                 $('.exp-by').show();
-             } else {
-                 $('.exp-by').hide();
-             }
-           };
+            let manageExpendedBy = function () {
+                const source = $('#source_of_money').val();
+                if (source == 'INDIVIDUAL') {
+                    $('.exp-by').show();
+                } else {
+                    $('.exp-by').hide();
+                }
+            };
 
-           manageExpendedBy();
+            manageExpendedBy();
             $('#source_of_money').on('change', function () {
                 manageExpendedBy();
+            });
+
+            $('#unit_price').on('keyup', function () {
+                const quantity = $('#quantity').val();
+                const price = $(this).val();
+                let amount = Number(quantity) * Number(price);
+                $('#amount').val(amount);
             });
         });
     </script>

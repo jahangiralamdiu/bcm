@@ -14,6 +14,7 @@
                             <tr>
                                 <th>Product</th>
                                 <th>Quantity</th>
+                                <th>Unit Price</th>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Source of Money</th>
@@ -25,7 +26,8 @@
                             @foreach($pendingExpenses as $expense)
                                 <tr>
                                     <td>{{$expense->product->name}}</td>
-                                    <td>{{$expense->quantity}}</td>
+                                    <td>{{$expense->quantity}} {{$expense->unit != 'na'?$expense->unit : ''}}</td>
+                                    <td>{{$expense->unit_price}}</td>
                                     <td>{{$expense->expense_date}}</td>
                                     <td>{{$expense->amount}}</td>
                                     <td>{{$expense->source_of_money}}</td>
@@ -55,6 +57,7 @@
                             <tr>
                                 <th>Product</th>
                                 <th>Quantity</th>
+                                <th>Unit Price</th>
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Source of Money</th>
@@ -64,7 +67,8 @@
                             @foreach($expenses as $expense)
                                 <tr>
                                     <td>{{$expense->product->name}}</td>
-                                    <td>{{$expense->quantity}}</td>
+                                    <td>{{$expense->quantity}} {{$expense->unit != 'na'?$expense->unit : ''}}</td>
+                                    <td>{{$expense->unit_price}}</td>
                                     <td>{{$expense->expense_date}}</td>
                                     <td>{{$expense->amount}}</td>
                                     <td>{{$expense->source_of_money}}</td>

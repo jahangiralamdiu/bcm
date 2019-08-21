@@ -8,7 +8,7 @@ class Expense extends Model
 {
     protected $table = 'expenses';
 
-    protected $fillable = ['product_id', 'quantity', 'unit', 'amount', 'expense_date', 'source_of_money', 'expended_by',
+    protected $fillable = ['product_id', 'quantity', 'unit', 'unit_price', 'amount', 'expense_date', 'source_of_money', 'expended_by',
         'status', 'details'];
 
     public function product()
