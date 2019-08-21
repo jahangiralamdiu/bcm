@@ -17,6 +17,7 @@
                                 <th>Mobile</th>
                                 <th>Email</th>
                                 <th>Address</th>
+                                <th>Roles</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -27,6 +28,12 @@
                                     <td>{{$user->mobile}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->address}}</td>
+                                    <td>
+                                        @foreach($user->roles as $role)
+                                            {{ $loop->first ? '' : ', ' }}
+                                            {{$role->name}}
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <a href="#" role="button" class="btn btn-secondary"><i class="far fa-edit"></i>Edit</a>
                                         <a href="#" role="button" class="btn btn-danger"><i

@@ -67,7 +67,8 @@
                                     </span>
                                         @endif
                                     </div>
-
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="amount">{{ __('Total Amount (BDT)') }}</label>
                                         <input id="amount" type="number" min="1"
@@ -80,8 +81,6 @@
                                     </span>
                                         @endif
                                     </div>
-                                </div>
-                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="expense_date">{{ __('Expense Date') }}</label>
                                         <input id="expense_date" type="date"
