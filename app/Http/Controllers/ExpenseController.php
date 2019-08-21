@@ -19,8 +19,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::where('status', ExpenseStatus::APPROVED)->get();
-        $pendingExpenses = Expense::whereIn('status', [ExpenseStatus::PENDING, ExpenseStatus::READY_FOR_DISBURSED])->get();
+        $expenses = Expense::where('status', ExpenseStatus::APPROVED)->orderBy('id', 'desc')->get();
+        $pendingExpenses = Expense::whereIn('status', [ExpenseStatus::PENDING, ExpenseStatus::READY_FOR_DISBURSED])->orderBy('id', 'desc')->get();
         return view('expenses.index', compact('expenses', 'pendingExpenses'));
     }
 
