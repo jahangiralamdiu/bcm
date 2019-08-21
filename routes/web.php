@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
         'users' => 'Auth\UserController',
     ]);
 
+    Route::get('/roles', 'RoleController@index');
     Route::get('/deposits-sum', 'DepositController@depositByUser');
     Route::get('/expense-status/{id}/{status}', 'ExpenseController@updateStatus');
 });

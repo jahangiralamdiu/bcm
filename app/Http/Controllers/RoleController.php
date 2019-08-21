@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deposit;
-use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Session;
 
-class DepositController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,9 @@ class DepositController extends Controller
      */
     public function index()
     {
-        $deposits = Deposit::all();
-        return view('deposits.index', compact('deposits'));
+        $roles = Role::all();
+        return view('auth.roles', compact('roles'));
+
     }
 
     /**
@@ -29,14 +26,7 @@ class DepositController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('add-expense')) {
-            $users = User::all();
-            return view('deposits.create', compact('users'));
-        }
-
-        Session::flash('error', trans('You do not have the permission to do the action'));
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -47,16 +37,7 @@ class DepositController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::allows('add-expense')) {
-            $data = $request->all();
-            Deposit::create($data);
-            Session::flash('success', trans('Deposit added successfully'));
-            return redirect('/deposits');
-        }
-
-        Session::flash('error', trans('You do not have the permission to do the action'));
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -102,15 +83,5 @@ class DepositController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function depositByUser()
-    {
-        $deposits = DB::table('deposits')
-            ->join('users', 'deposits.depositor_id', '=', 'users.id')
-            ->select('deposits.depositor_id', 'users.name', 'users.mobile', DB::raw('SUM(deposits.amount) as total_sales'))
-            ->groupBy('depositor_id')
-            ->get();
-        dd($deposits);
     }
 }

@@ -19,4 +19,14 @@ class UserController extends Controller
         $users = User::all();
         return view('auth.index', compact('users'));
     }
+
+    public function create()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
 }

@@ -8,6 +8,8 @@ use App\Models\Expense;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Integer;
 
 class ExpenseController extends Controller
@@ -31,9 +33,15 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $products = Product::all();
-        return view('expenses.create', compact('users', 'products'));
+        if (Gate::allows('add-expense')) {
+            $users = User::all();
+            $products = Product::all();
+            return view('expenses.create', compact('users', 'products'));
+        }
+
+        Session::flash('error', trans('You do not have the permission to do the action'));
+
+        return redirect()->back();
     }
 
     /**
@@ -44,10 +52,17 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['status'] = ExpenseStatus::PENDING;
-        Expense::create($data);
-        return redirect('/expenses');
+        if (Gate::allows('add-expense')) {
+            $data = $request->all();
+            $data['status'] = ExpenseStatus::PENDING;
+            Expense::create($data);
+            Session::flash('success', trans('Expense added successfully'));
+            return redirect('/expenses');
+        }
+
+        Session::flash('error', trans('You do not have the permission to do the action'));
+
+        return redirect()->back();
     }
 
     /**
@@ -99,9 +114,25 @@ class ExpenseController extends Controller
     {
         $expense = Expense::find($id);
         if ($status == 'Rejected') {
+            if ($expense->status == ExpenseStatus::PENDING) {
+                if (Gate::denies('approve-expense')) {
+                    Session::flash('error', trans('You do not have the permission to do the action'));
+                    return redirect(route('expenses.index'));
+                }
+            } else if ($expense->status == ExpenseStatus::READY_FOR_DISBURSED) {
+                if (Gate::denies('disburse')) {
+                    Session::flash('error', trans('You do not have the permission to do the action'));
+                    return redirect(route('expenses.index'));
+                }
+            }
             $expense->status = ExpenseStatus::REJECTED;
+            Session::flash('success', trans('Expense rejected successfully'));
         } else {
             if ($expense->status == ExpenseStatus::PENDING) {
+                if (Gate::denies('approve-expense')) {
+                    Session::flash('error', trans('You do not have the permission to do the action'));
+                    return redirect(route('expenses.index'));
+                }
                 if ($expense->source_of_money == 'INDIVIDUAL') {
                     $expense->status = ExpenseStatus::APPROVED;
                     Deposit::create(['depositor_id' => $expense->expended_by, 'amount' => $expense->amount,
@@ -110,8 +141,15 @@ class ExpenseController extends Controller
                     $expense->status = ExpenseStatus::READY_FOR_DISBURSED;
                 }
 
+                Session::flash('success', trans('Expense approved successfully'));
+
             } else {
+                if (Gate::denies('disburse')) {
+                    Session::flash('error', trans('You do not have the permission to do the action'));
+                    return redirect(route('expenses.index'));
+                }
                 $expense->status = ExpenseStatus::APPROVED;
+                Session::flash('success', trans('Expense disbursed successfully'));
             }
         }
 
