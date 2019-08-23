@@ -33,10 +33,10 @@
                                     <td>{{$expense->source_of_money}}</td>
                                     <td>{{$expense->status}}</td>
                                     <td>
-                                        <a href="{{url('/expense-status/'. $expense->id .'/'. 'Approved')}}" role="button" class="btn btn-success">
+                                        <a href="{{url('/expense-status/'. $expense->id .'/'. 'Approved')}}" role="button" class="btn btn-sm btn-success">
                                             {{$expense->status == 'Pending' ? 'Approve' : 'Disburse'}}
                                         </a>
-                                        <a href="{{url('/expense-status/'. $expense->id .'/'. 'Rejected')}}" role="button" class="btn btn-danger">Reject</a>
+                                        <a href="{{url('/expense-status/'. $expense->id .'/'. 'Rejected')}}" role="button" class="btn btn-sm btn-danger">Reject</a>
                                     </td>
                                 </tr>
                             @endforeach
