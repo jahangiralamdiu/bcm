@@ -27,8 +27,8 @@
                                     <td>{{$deposit->deposit_date}}</td>
                                     <td>{{$deposit->remarks}}</td>
                                     <td>
-                                        <a href="#" role="button" class="btn btn-secondary"><i class="far fa-edit"></i> Edit</a>
-                                        <a href="#" role="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                        <a href="#" role="button" class="btn btn-sm btn-secondary"><i class="far fa-edit"></i> Edit</a>
+                                        <a href="#" role="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
