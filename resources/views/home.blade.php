@@ -85,20 +85,22 @@
 @push('page-js')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+        let invbyuser = [];
+        let depExp = [];
+        let productType = [];
+
+        $.get( "/summary", function( data ) {
+            invbyuser = data.invByUser;
+            depExp = data.depExp;
+            productType = data.productType;
+        });
         google.charts.load("current", {packages: ["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
         google.charts.setOnLoadCallback(drawCostChart);
         google.charts.setOnLoadCallback(drawInvCostChart);
 
         function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Investment', 'Investment per user'],
-                ['Jahangir', 20000],
-                ['Mahfuz', 25000],
-                ['Nasrin', 25000],
-                ['Pappu', 15000],
-                ['Sayeed', 15000]
-            ]);
+            var data = google.visualization.arrayToDataTable(invbyuser);
 
             var options = {
                 title: 'Investment by User',
@@ -110,11 +112,7 @@
         }
 
         function drawCostChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Costs', 'Costs per category'],
-                ['Product', 50000],
-                ['Service', 40100]
-            ]);
+            var data = google.visualization.arrayToDataTable(productType);
 
             var options = {
                 title: 'Costs by categories',
@@ -126,11 +124,7 @@
         }
 
         function drawInvCostChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Investment-Expense', 'Investment vs Expense'],
-                ['Investment', 100000],
-                ['Expense', 90100]
-            ]);
+            var data = google.visualization.arrayToDataTable(depExp);
 
             var options = {
                 title: 'Investment vs Expense',
