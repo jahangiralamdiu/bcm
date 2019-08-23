@@ -88,8 +88,8 @@
         let invbyuser = [];
         let depExp = [];
         let productType = [];
-
-        $.get( "/summary", function( data ) {
+        $url = "{{url('/summary')}}";
+        $.get( $url, function( data ) {
             invbyuser = data.invByUser;
             depExp = data.depExp;
             productType = data.productType;
