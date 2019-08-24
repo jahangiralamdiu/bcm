@@ -29,7 +29,7 @@ class DepositController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('add-expense')) {
+        if (Gate::allows('add-deposit')) {
             $users = User::all();
             return view('deposits.create', compact('users'));
         }
@@ -47,7 +47,7 @@ class DepositController extends Controller
      */
     public function store(Request $request)
     {
-        if (Gate::allows('add-expense')) {
+        if (Gate::allows('add-deposit')) {
             $data = $request->all();
             Deposit::create($data);
             Session::flash('success', trans('Deposit added successfully'));

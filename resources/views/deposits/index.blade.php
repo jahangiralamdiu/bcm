@@ -16,7 +16,7 @@
                                 <th>Date</th>
                                 <th>Amount</th>
                                 <th>Remarks</th>
-                                <th>Action</th>
+                                {{--<th>Action</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -26,10 +26,10 @@
                                     <td>{{$deposit->amount}}</td>
                                     <td>{{$deposit->deposit_date}}</td>
                                     <td>{{$deposit->remarks}}</td>
-                                    <td>
-                                        <a href="#" role="button" class="btn btn-sm btn-secondary"><i class="far fa-edit"></i> Edit</a>
-                                        <a href="#" role="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
-                                    </td>
+                                    {{--<td>--}}
+                                        {{--<a href="#" role="button" class="btn btn-sm btn-secondary"><i class="far fa-edit"></i> Edit</a>--}}
+                                        {{--<a href="#" role="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>--}}
+                                    {{--</td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
